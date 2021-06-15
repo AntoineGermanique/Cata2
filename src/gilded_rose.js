@@ -1,6 +1,13 @@
+import {
+  SULFURAS,
+  BACKSTAGE,
+  BRIE,
+  CONJURED,
+  MAX_QUALITY_VALUE,
+  MIN_QUALITY_VALUE
+} from './const'
+
 class Item {
-  static maxQualityValue = 50;
-  static minQualityValue = 0;
   constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
@@ -44,10 +51,10 @@ const updateQualityPure = (items) =>
     return updateDefaultItem(item);
   })
 
-const isItemQualityOutOfBounds = (item) => !(item.quality >= Item.minQualityValue && item.quality <= Item.maxQualityValue);
-const isItemAgedBrie = (item) => item.name === 'Aged Brie';
+const isItemQualityOutOfBounds = (item) => !(item.quality >= Item.MIN_QUALITY_VALUE && item.quality <= Item.MAX_QUALITY_VALUE);
+const isItemAgedBrie = (item) => item.name === BRIE;
 const updateAgedBrie = (item) => updateQualityProperty(item, ++item.quality);
-const isItemBackstage = (item) => item.name === 'Backstage passes to a TAFKAL80ETC concert';
+const isItemBackstage = (item) => item.name === BACKSTAGE;
 const updateBackStage = (item) => {
   if (item.sellIn > 10) {
     return updateQualityProperty(item, ++item.quality);
@@ -60,8 +67,8 @@ const updateBackStage = (item) => {
   }
   return updateQualityProperty(item, 0);
 }
-const isItemSulfuras = (item) => item.name === 'Sulfuras, Hand of Ragnaros';
-const isItemConjured = (item) => item.name.includes('Conjured');
+const isItemSulfuras = (item) => item.name === SULFURAS;
+const isItemConjured = (item) => item.name.includes(CONJURED);
 const updateItemConjured = (item) => updateQualityProperty(item, item.quality - 2);
 const updateDefaultItem = (item) => item.sellIn > 0
   ? updateQualityProperty(item, item.quality - 1)
@@ -69,11 +76,11 @@ const updateDefaultItem = (item) => item.sellIn > 0
 
 const updateQualityProperty = (item, quality) => {
   let newQuality = quality;
-  if (quality > Item.maxQualityValue) {
-    newQuality = Item.maxQualityValue;
+  if (quality > MAX_QUALITY_VALUE) {
+    newQuality = MAX_QUALITY_VALUE;
   }
-  if (quality < Item.minQualityValue) {
-    newQuality = Item.minQualityValue;
+  if (quality < MIN_QUALITY_VALUE) {
+    newQuality = MIN_QUALITY_VALUE;
   }
   return ({ ...item, ...{ quality: newQuality } })
 };
