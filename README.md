@@ -29,3 +29,5 @@ To generate test coverage report
 ```sh
 npm run test:coverage
 ```
+
+tested on node.js v15.5.0
