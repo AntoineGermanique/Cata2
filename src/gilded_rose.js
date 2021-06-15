@@ -36,13 +36,13 @@ const updateQualityPure = (items) =>
     if (isItemQualityOutOfBounds(item)) {
       return item;
     }
-    if (isItemAgedBrie(item)) {
+    if (isItem(BRIE)(item)) {
       return updateAgedBrie(item);
     }
-    if (isItemBackstage(item)) {
+    if (isItem(BACKSTAGE)(item)) {
       return updateBackStage(item);
     }
-    if (isItemSulfuras(item)) {
+    if (isItem(SULFURAS)(item)) {
       return item;
     }
     if (isItemConjured(item)) {
@@ -52,9 +52,7 @@ const updateQualityPure = (items) =>
   })
 
 const isItemQualityOutOfBounds = (item) => !(item.quality >= MIN_QUALITY_VALUE && item.quality <= MAX_QUALITY_VALUE);
-const isItemAgedBrie = (item) => item.name === BRIE;
 const updateAgedBrie = (item) => updateQualityProperty(item, ++item.quality);
-const isItemBackstage = (item) => item.name === BACKSTAGE;
 const updateBackStage = (item) => {
   if (item.sellIn > 10) {
     return updateQualityProperty(item, ++item.quality);
@@ -84,7 +82,7 @@ const updateQualityProperty = (item, quality) => {
   }
   return ({ ...item, ...{ quality: newQuality } })
 };
-
+const isItem = nameToDetect => item => item.name === nameToDetect;
 module.exports = {
   Item,
   Shop,
@@ -95,9 +93,7 @@ module.exports = {
   updateAgedBrie,
   updateQualityPure,
   updateSellInPure,
-  isItemAgedBrie,
-  isItemBackstage,
   isItemConjured,
   isItemQualityOutOfBounds,
-  isItemSulfuras
+  isItem
 }
