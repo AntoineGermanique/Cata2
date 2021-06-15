@@ -88,5 +88,11 @@ const updateQualityProperty = (item, quality) => {
 module.exports = {
   Item,
   Shop,
-  updateQualityProperty
+  updateQualityProperty,
+  updateDefaultItem,
+  updateItemConjured,
+  updateBackStage,
+  updateAgedBrie,
+  updateQualityPure,
+  updateSellInPure
 }
