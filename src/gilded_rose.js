@@ -94,5 +94,10 @@ module.exports = {
   updateBackStage,
   updateAgedBrie,
   updateQualityPure,
-  updateSellInPure
+  updateSellInPure,
+  isItemAgedBrie,
+  isItemBackstage,
+  isItemConjured,
+  isItemQualityOutOfBounds,
+  isItemSulfuras
 }
