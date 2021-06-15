@@ -1,11 +1,11 @@
-import {
+const {
   SULFURAS,
   BACKSTAGE,
   BRIE,
   CONJURED,
   MAX_QUALITY_VALUE,
   MIN_QUALITY_VALUE
-} from './const'
+} = require('./const');
 
 class Item {
   constructor(name, sellIn, quality) {
@@ -51,7 +51,7 @@ const updateQualityPure = (items) =>
     return updateDefaultItem(item);
   })
 
-const isItemQualityOutOfBounds = (item) => !(item.quality >= Item.MIN_QUALITY_VALUE && item.quality <= Item.MAX_QUALITY_VALUE);
+const isItemQualityOutOfBounds = (item) => !(item.quality >= MIN_QUALITY_VALUE && item.quality <= MAX_QUALITY_VALUE);
 const isItemAgedBrie = (item) => item.name === BRIE;
 const updateAgedBrie = (item) => updateQualityProperty(item, ++item.quality);
 const isItemBackstage = (item) => item.name === BACKSTAGE;
